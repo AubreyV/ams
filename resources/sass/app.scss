@@ -1,1 +1,20 @@
-//
+// Bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+// Variables
+@import "variables";
+
+// Components
+@import "components";
+
+// App Skeleton
+#app {
+  height: 100vh;
+}
+
+// Flex
+.d-flex {
+  &.flex-even {
+    flex: 1;
+  }
+}

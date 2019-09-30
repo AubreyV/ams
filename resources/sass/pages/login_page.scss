@@ -1,0 +1,17 @@
+// Variables
+@import "../variables";
+
+#login-page {
+  .login-form {
+    background: $primary-color;
+  }
+
+  .carousel-container {
+    background-color: $secondary-color;
+
+    .quote-of-the-day {
+      color: white;
+      font-style: italic;
+    }
+  }
+}
