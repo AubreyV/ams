@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
+
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
