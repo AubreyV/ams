@@ -1,0 +1,15 @@
+// Colors
+$primary-color: #044565;
+$secondary-color: #DF9850;
+
+// Initial
+#app {
+    height: 100vh;
+}
+
+// Flex
+.d-flex {
+    &.flex-even {
+        flex: 1;
+    }
+}

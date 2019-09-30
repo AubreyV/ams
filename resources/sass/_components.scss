@@ -1,0 +1,19 @@
+// Buttons
+.btn {
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    padding: 5px 40px;
+    &.btn-primary {
+        background-color: $primary-color !important;
+    }
+
+    &.btn-secondary {
+        background-color: $secondary-color !important;
+    }
+
+    &.btn-default {
+        background-color: white !important;
+        color: black;
+    }
+}
