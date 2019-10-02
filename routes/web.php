@@ -18,3 +18,8 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
+
+// Admin pages
+Route::get('/employee/{any?}', function() {
+    return view('layouts.employee');
+})->where('any', '([A-z\d\-\/_.]+)?');
