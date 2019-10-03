@@ -1,9 +1,20 @@
-import Vue from 'vue';
+import Vue from 'vue'
 import VueRouter from 'vue-router'
+import axios from 'axios'
+import { ValidationProvider } from 'vee-validate/dist/vee-validate.full'
+import Swal from 'sweetalert2'
 
-window._ = require('lodash');
-window.Vue = Vue;
-Vue.use(VueRouter);
+window._ = require('lodash')
+window.Vue = Vue
+window.axios = axios
+window.Swal = Swal
+
+window.toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+})
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -11,9 +22,12 @@ Vue.use(VueRouter);
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = require('axios');
+window.axios = require('axios')
 
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+
+Vue.use(VueRouter)
+Vue.component('ValidationProvider', ValidationProvider)
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

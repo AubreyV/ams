@@ -1,9 +1,7 @@
 <template>
-	<div class="p-5">asdsadsadsa</div>
+  <div class="p-5">asdsadsadsa</div>
 </template>
 
 <script>
-	export default {
-
-	}
+export default {};
 </script>

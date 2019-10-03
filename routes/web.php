@@ -20,6 +20,11 @@ Route::get('/login', function () {
 })->name('login');
 
 // Admin pages
-Route::get('/employee/{any?}', function() {
+Route::get('/employee/{any?}', function () {
     return view('layouts.employee');
 })->where('any', '([A-z\d\-\/_.]+)?');
+
+
+Route::get('/try', function () {
+    dd(auth()->user());
+});
