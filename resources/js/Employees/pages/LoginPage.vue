@@ -45,6 +45,9 @@
 
 <script>
 import Carousel from "../components/Carousel";
+import ApiService from "../../common/api.service";
+import JwtService from "../../common/jwt.service";
+import { LOGIN } from "../../store/actions.type";
 
 export default {
   components: {
@@ -69,62 +72,47 @@ export default {
     },
     hasPasswordErrors() {
       return this.errors.password != "";
+    },
+    hasErrors(){
+      return this.errors.email != undefined || 
+             this.errors.password != undefined
     }
   },
   methods: {
     validate: async function() {
-      let email = [];
-      let password = [];
+      let hasErrors = false
 
-      await this.$refs.email.validate().then(function(value) {
-        email = value.errors;
+      await this.$refs.email.validate().then(value => {
+        this.errors.email = value.errors[0];
       });
 
-      await this.$refs.password.validate().then(function(value) {
-        password = value.errors;
+      await this.$refs.password.validate().then(value => {
+        this.errors.password = value.errors[0];
       });
-
-      return {
-        email: email,
-        password: password
-      };
     },
     login: async function() {
-      const errors = await this.validate();
-      this.isRequesting = true;
-      if (errors.email.length > 0 || errors.password.length > 0) {
-        this.errors.email = errors.email[0];
-        this.errors.password = errors.password[0];
-      } else {
-        axios
-          .post(
-            "/api/login",
-            {
-              email: this.credentials.email,
-              password: this.credentials.password
-            },
-            {
-              headers: {
-                Accept: "application/json"
-              }
-            }
-          )
-          .then(response => {
+
+      const validation = await this.validate();
+
+      if (!this.hasErrors){
+       this.isRequesting = true;
+
+       this.$store.dispatch(LOGIN, this.credentials)
+          .then( response =>{
             this.isRequesting = false;
             toast.fire({
               type: "success",
-              title: response.data
+              title: "You have been succesfully logged in!"
             });
-            this.$router.push({ path: "/employee/dashboard" });
-            this.$router.go();
-          })
-          .catch(({ response }) => {
-            this.isRequesting = false;
-            toast.fire({
-              type: "error",
-              title: response.data
-            });
+            
+            this.$router.push('/employee/dashboard')
+        }).catch(({ response }) => {
+          this.isRequesting = false;
+          toast.fire({
+            type: "error",
+            title: response.data.message
           });
+        });
       }
     }
   }

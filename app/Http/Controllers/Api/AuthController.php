@@ -47,8 +47,11 @@ class AuthController extends Controller
             if (Hash::check($request->password, $user->password)) {
                 $token = $user->createToken('Laravel Password Grant Client')->accessToken;
                 auth()->login($user);
-                $response = "You have been succesfully logged in!";
-                return response($response, 200)->withCookie('auth_token', $token);
+                $response= [
+                    "messsage" => "You have been succesfully logged in!",
+                    "token"    => $token];
+                $expiration = 60*24*7; // 1 week
+                return response($response, 200);
             } else {
                 $response = "Invalid credentials.";
                 return response($response, 401);

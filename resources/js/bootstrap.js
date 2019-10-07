@@ -3,11 +3,14 @@ import VueRouter from 'vue-router'
 import axios from 'axios'
 import { ValidationProvider } from 'vee-validate/dist/vee-validate.full'
 import Swal from 'sweetalert2'
+import VueCookies from 'vue-cookies'
+
 
 window._ = require('lodash')
 window.Vue = Vue
 window.axios = axios
 window.Swal = Swal
+window.VueCookies = VueCookies
 
 window.toast = Swal.mixin({
   toast: true,

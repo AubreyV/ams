@@ -7,14 +7,23 @@ import SideBar from './BaseComponents/SideBar';
 // Employee Module
 import App from './Employees/App';
 import Dashboard from './Employees/pages/Dashboard';
+import Login from './Employees/pages/LoginPage';
+
 
 let routes = [
   {
+    path : '/login',
+    component: Login,
+    meta:{
+      requiresAuth: false,
+    }
+  },
+  {
     path: '/employee',
-    // meta: {
-    //   requiresAuth: true,
-    //   guard: 'admin'
-    // },
+    meta: {
+      requiresAuth: true,
+      guard: 'admin'
+    },
     components: {
       default:  App,
       sideBar: SideBar,
@@ -29,11 +38,10 @@ let routes = [
   }
 ];
 
+// let router = new VueRouter({
+//   routes,
+//   mode: 'history'
+// });
 
-let router = new VueRouter({
-  routes,
-  mode: 'history'
-});
-
-window.router = router;
-export default router;
+// window.router = router;
+export default routes;

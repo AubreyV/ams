@@ -15,16 +15,8 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
-
 // Admin pages
-Route::get('/employee/{any?}', function () {
+Route::get('/{any?}', function () {
     return view('layouts.employee');
 })->where('any', '([A-z\d\-\/_.]+)?');
 
-
-Route::get('/try', function () {
-    dd(auth()->user());
-});
