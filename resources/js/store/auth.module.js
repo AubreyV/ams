@@ -19,21 +19,25 @@ const getters = {
   },
   isAuthenticated(state) {
     return state.isAuthenticated;
-  }
+  },
+  errMsg(state) {
+    return state.errors;
+  },
 };
 
 const actions = {
   [LOGIN](context, credentials) {
-    return new Promise(resolve => {
+    return new Promise((resolve ,reject) => {
       ApiService.post("login", credentials )
-        .then(response => {
-          context.commit(SET_AUTH, response.data.user);
-          JwtService.setToken(response.data.token)
+        .then(({data}) => {
+          context.commit(SET_AUTH, data.user);
+          JwtService.setToken(data.token)
           ApiService.setHeader()
           resolve()
         })
         .catch(({ response }) => {
-          context.commit(SET_ERROR, response.data.errors);
+          context.commit(SET_ERROR, response.data);
+          reject(response.data)
         });
     });
   },

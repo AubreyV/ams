@@ -91,7 +91,7 @@ export default {
 
       await this.$refs.password.validate()
         .then(({ valid , errors}) => {
-          this.errors.email = valid ? '' : errors[0] ;
+          this.errors.password = valid ? '' : errors[0] ;
         });
     },
     login: async function() {
@@ -110,11 +110,11 @@ export default {
             });
             
             this.$router.push('/employee/dashboard')
-        }).catch(({ response }) => {
+        }).catch(err => {
           this.isRequesting = false;
           toast.fire({
             type: "error",
-            title: response.data.message
+            title: err
           });
         });
       }
