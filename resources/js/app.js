@@ -14,8 +14,8 @@ import { initialize } from './common/checkAuth';
 import store from './store';
 
 const router = new VueRouter({
-    routes,
-    mode: 'history'
+	routes,
+	mode: 'history'
 });
 
 require('./bootstrap')
