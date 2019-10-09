@@ -7,6 +7,12 @@
 // Components
 @import "components";
 
+@import "tailwindcss/base";
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
+
 // App Skeleton
 #app {
   height: 100vh;

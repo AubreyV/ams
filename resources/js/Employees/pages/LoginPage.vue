@@ -74,20 +74,22 @@ export default {
       return this.errors.password != "";
     },
     hasErrors(){
-      return this.errors.email != undefined || 
-             this.errors.password != undefined
+      return this.errors.email != "" || 
+             this.errors.password != ""
     }
   },
   methods: {
     validate: async function() {
       let hasErrors = false
 
-      await this.$refs.email.validate().then(value => {
-        this.errors.email = value.errors[0];
+      await this.$refs.email.validate()
+      .then(({ valid , errors}) => {
+        this.errors.email = valid ? '' : errors[0];
       });
 
-      await this.$refs.password.validate().then(value => {
-        this.errors.password = value.errors[0];
+      await this.$refs.password.validate()
+      .then(({ valid , errors}) => {
+        this.errors.password = valid ? '' : errors[0];
       });
     },
     login: async function() {
@@ -100,10 +102,10 @@ export default {
        this.$store.dispatch(LOGIN, this.credentials)
           .then( response =>{
             this.isRequesting = false;
-            toast.fire({
-              type: "success",
-              title: "You have been succesfully logged in!"
-            });
+            // toast.fire({
+            //   type: "success",
+            //   title: "You have been succesfully logged in!"
+            // });
             
             this.$router.push('/employee/dashboard')
         }).catch(({ response }) => {

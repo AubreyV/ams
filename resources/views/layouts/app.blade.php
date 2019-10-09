@@ -6,6 +6,12 @@
 
         <title>AMS</title>
 
+        <!-- add icon link -->
+        <link 
+            rel = "icon" 
+            href = "https://img.icons8.com/color/124/000000/rick-sanchez.png" 
+            type = "image">
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">

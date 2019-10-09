@@ -24,11 +24,7 @@ let routes = [
       requiresAuth: true,
       guard: 'admin'
     },
-    components: {
-      default:  App,
-      sideBar: SideBar,
-      navBar: NavBar,
-    },
+    component: App,
     children: [
       {
         path: 'dashboard',
